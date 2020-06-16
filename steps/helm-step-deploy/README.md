@@ -1,4 +1,4 @@
-# helm-deployer
+# helm-step-deploy
 
 The Helm deployer step container deploys a Helm chart to a Kubernetes cluster.
 
@@ -38,7 +38,7 @@ steps:
 
 ...
 - name: help-deployer
-  image: projectnebula/helm-deployer:latest
+  image: relaysh/helm-step-deploy
   spec:
     credentials:
       ca.pem:

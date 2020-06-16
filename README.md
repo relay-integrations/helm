@@ -2,17 +2,13 @@
 
 Integration with Helm for Puppet Relay.
 
-## External requirements
+## Container Images
 
-_TBD_
+The following are supported container images:
 
-## Getting started
-
-_TBD_
-
-## Examples
-
-_TBD_
+| Type | Name | Description |
+|------|-------------|-----| 
+| Step | [helm-step-deploy](/steps/helm-step-deploy) | Deploy Helm chart |
 
 ## Contributing
 
