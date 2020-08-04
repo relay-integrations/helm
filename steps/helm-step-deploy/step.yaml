@@ -14,16 +14,15 @@ name: helm-step-deploy
 version: 3
 
 # High-level phrase describing what this action does. Required.
-summary: 
+summary: Deploy a Helm chart
 
 # Single-paragraph explanation of what this action does in more detail.
 # Optional. Markdown.
-description: |
-  
+description: This step deploys a Helm chart to a Kubernetes cluster.
 
 # URL or path relative to this file to an icon or icons representing this
 # action. Optional. Defaults to the integration icon.
-icon: 
+icon:
 
 # The mechanism to use to construct this step. Required. Must be an action
 # builder. See the Builders section below.
@@ -35,3 +34,6 @@ build:
 
   # The builder to use. Required.
   kind: Docker
+
+publish:
+  repository: relaysh/helm-step-deploy
