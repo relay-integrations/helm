@@ -1,0 +1,99 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the deployment"
+    },
+    "values": {
+      "type": "object",
+      "description":  "Use the `values` mapping to override specific values in the chart. For example, the example below overrides some of the chart's API values."
+    },
+    "chart": {
+      "type": "string",
+      "description": "The repo/chart to use. If the `git` map is set, then the chart is referenced from that repository instead of a remote chart repo."
+    },
+    "namespace": {
+      "type": "string",
+      "description": "The Kubernetes namespace to deploy the chart into. (default: 'default')",
+      "default": "default"
+    },
+    "recreatePods": {
+      "type": "boolean",
+      "description": "If `true`, all pods managed by this chart will be destroyed and recreated after the deployment completes. (default: false)",
+      "default": false
+    },
+    "cluster": {
+      "type": "object",
+      "x-relay-connectionType": "kubernetes",
+      "properties": {
+        "server": {
+          "type": "string",
+          "description": "The cluster URL to connect to"
+        },
+        "certificateAuthority": {
+          "type": "string",
+          "description": "The PEM-encoded CA certificate of the cluster"
+        },
+        "token": {
+          "type": "string",
+          "description": "An access token to use for authenticating to the cluster"
+        }
+      },
+      "required": ["server","certificateAuthority","token"]
+    },
+    "git": {
+      "type": "object",
+      "description": "A git repository containing the terraform code to run",
+      "properties": {
+        "ssh_key": {
+          "type": "string",
+          "description": "The SSH key to use when cloning the git repository. You can pass the key  into Relay as a secret."
+        },
+        "known_hosts": {
+          "type": "string",
+          "description": "SSH known hosts file. Pass the contents of the file into Relay as a secr et."
+        },
+        "name": {
+          "type": "string",
+          "description": "A directory name for the git clone"
+        },
+        "branch": {
+          "type": "string",
+          "description": "The git branch to clone"
+        },
+        "repository": {
+          "type": "string",
+          "description": "The git repository URL"
+        }
+      },
+      "required": [
+        "ssh_key",
+        "known_hosts",
+        "name",
+        "repository"
+      ]
+    },
+    "credentials": {
+      "type": "object",
+      "description": "A map of cert credentials to use for accessing the tiller controller in the cluster.",
+      "properties": {
+        "ca.pem": {
+          "type": "string",
+          "description": "The Tiller CA file contents"
+        },
+        "key.pem": {
+          "type": "string",
+          "description": "The tiller key file contents"
+        },
+        "cert.pem": {
+          "type": "string",
+          "description": "The tiller cert file contents"
+        }
+      },
+      "required": ["ca.pem","key.pem","cert.pem"]
+    }
+  },
+  "required": ["credentials","name","values","chart","cluster"]
+}
