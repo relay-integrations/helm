@@ -2,13 +2,13 @@
 
 Integration with Helm for Puppet Relay.
 
-## Container Images
+## Steps
 
-The following are supported container images:
+The following steps are included in this integration:
 
-| Type | Name | Description |
+| Name | Description |
 |------|-------------|-----| 
-| Step | [helm-step-deploy](/steps/helm-step-deploy) | Deploy Helm chart |
+| [helm-step-deploy](/steps/helm-step-deploy) | Deploy Helm chart |
 
 ## Contributing
 

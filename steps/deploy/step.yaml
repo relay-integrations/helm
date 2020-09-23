@@ -1,0 +1,68 @@
+apiVersion: integration/v1
+kind: Step
+name: deploy
+version: 4
+summary: Deploy a Helm chart
+description: This step deploys a Helm chart to a Kubernetes cluster.
+icon:
+build:
+  apiVersion: build/v1
+  kind: Docker
+publish:
+  repository: relaysh/helm-step-deploy
+examples:
+- summary: Deploy a helm chart for 'my-app' from a local chart repository
+  content:
+    apiVersion: v1 
+    kind: Step
+    name: helm-deployer
+    image: relaysh/helm-step-deploy
+    spec:
+      credentials:
+        ca.pem:
+          $type: Secret
+          name: ca
+        key.pem:
+          $type: Secret
+          name: key
+        cert.pem:
+          $type: Secret
+          name: cert
+      values:
+        api:
+          image:
+            tag: 
+              $type: Secret
+              name: api.image.tag
+          adminToken:
+            secretRef:
+              name: admin-token
+          sendGrid:
+            secretRef:
+              name: sendgrid-ref
+          googleCredentials:
+            secretRef:
+              name: google-creds
+          storage:
+            address: gs://storage
+      chart: helm/my-app
+      namespace: default
+      recreatePods: true
+      git: 
+        ssh_key:
+          $type: Secret
+          name: ssh_key
+        known_hosts:
+          $type: Secret
+          name: known_hosts
+        name: my-git-repo
+        branch: dev
+        repository: path/to/your/repo     
+      cluster:
+        name: my-cluster
+        connection: !Connection { type: kubernetes, name: my-cluster }
+
+schemas:
+  spec:
+    source: file
+    file: spec.schema.json
