@@ -11,44 +11,22 @@ build:
 publish:
   repository: relaysh/helm-step-deploy
 examples:
-- summary: Deploy a helm chart for 'my-app' from a local chart repository
+- summary: Deploy the Puppetboard web interface to PuppetDB
   content:
-    apiVersion: v1 
+    apiVersion: v1
     kind: Step
-    name: helm-deployer
+    name: deploy
     image: relaysh/helm-step-deploy
     spec:
-      credentials:
-        ca.pem: !Secret ca
-        key.pem: !Secret key
-        cert.pem: !Secret cert
-      values:
-        api:
-          image:
-            tag: !Secret api.image.tag
-          adminToken:
-            secretRef:
-              name: admin-token
-          sendGrid:
-            secretRef:
-              name: sendgrid-ref
-          googleCredentials:
-            secretRef:
-              name: google-creds
-          storage:
-            address: gs://storage
-      chart: !Parameter chart
-      namespace: !Parameter namespace 
-      recreatePods: true
-      git: 
-        ssh_key: !Secret ssh_key
-        known_hosts: !Secret known_hosts
-        name: !Parameter my-repo
-        branch: !Parameter branch 
-        repository: !Parameter repo-path     
       cluster:
         name: my-cluster
-        connection: !Connection { type: kubernetes, name: my-cluster }
+        connection: !Connection {type: kubernetes, name: my-k8s-cluster}
+      name: !Parameter releaseName
+      namespace: !Parameter releaseNamespace
+      repository: https://charts.boo.tc
+      chart: puppetboard
+      values:
+        puppetDbHost: !Parameter puppetDBHost
 
 schemas:
   spec:
