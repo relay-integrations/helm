@@ -19,21 +19,13 @@ examples:
     image: relaysh/helm-step-deploy
     spec:
       credentials:
-        ca.pem:
-          $type: Secret
-          name: ca
-        key.pem:
-          $type: Secret
-          name: key
-        cert.pem:
-          $type: Secret
-          name: cert
+        ca.pem: !Secret ca
+        key.pem: !Secret key
+        cert.pem: !Secret cert
       values:
         api:
           image:
-            tag: 
-              $type: Secret
-              name: api.image.tag
+            tag: !Secret api.image.tag
           adminToken:
             secretRef:
               name: admin-token
@@ -45,19 +37,15 @@ examples:
               name: google-creds
           storage:
             address: gs://storage
-      chart: helm/my-app
-      namespace: default
+      chart: !Parameter chart
+      namespace: !Parameter namespace 
       recreatePods: true
       git: 
-        ssh_key:
-          $type: Secret
-          name: ssh_key
-        known_hosts:
-          $type: Secret
-          name: known_hosts
-        name: my-git-repo
-        branch: dev
-        repository: path/to/your/repo     
+        ssh_key: !Secret ssh_key
+        known_hosts: !Secret known_hosts
+        name: !Parameter my-repo
+        branch: !Parameter branch 
+        repository: !Parameter repo-path     
       cluster:
         name: my-cluster
         connection: !Connection { type: kubernetes, name: my-cluster }
