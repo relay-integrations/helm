@@ -19,9 +19,13 @@ CHART_NAME=$(ni get -p {.name})
 CHART_PATH=$(ni get -p {.chart})
 
 GIT=$(ni get -p {.git})
+REPOSITORY=$(ni get -p {.repository})
 if [ -n "${GIT}" ]; then
     ni git clone
     CHART_PATH=/workspace/$(ni get -p {.git.name})/${CHART_PATH}
+elif [ -n "${REPOSITORY}" ]; then
+    helm repo add remote "${REPOSITORY}"
+    CHART_PATH="remote/${CHART_PATH}"
 fi
 
 RECREATE_PODS_OPTIONS=

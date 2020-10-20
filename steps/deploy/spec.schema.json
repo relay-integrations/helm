@@ -10,9 +10,14 @@
       "type": "object",
       "description":  "Use the `values` mapping to override specific values in the chart. For example, the example below overrides some of the chart's API values."
     },
+    "repository": {
+      "type": "string",
+      "description": "The URL to the chart repository to use if not using Git or the legacy Helm chart repository.",
+      "format": "url"
+    },
     "chart": {
       "type": "string",
-      "description": "The repo/chart to use. If the `git` map is set, then the chart is referenced from that repository instead of a remote chart repo."
+      "description": "The chart to use. If the `git` map is set, then the chart is referenced from that repository instead of a remote chart repo."
     },
     "namespace": {
       "type": "string",
@@ -26,22 +31,34 @@
     },
     "cluster": {
       "type": "object",
-      "x-relay-connectionType": "kubernetes",
+      "description": "Information about the Kubernetes cluster to deploy to",
       "properties": {
-        "server": {
+        "name": {
           "type": "string",
-          "description": "The cluster URL to connect to"
+          "description": "An alias to use for the cluster within this step"
         },
-        "certificateAuthority": {
-          "type": "string",
-          "description": "The PEM-encoded CA certificate of the cluster"
-        },
-        "token": {
-          "type": "string",
-          "description": "An access token to use for authenticating to the cluster"
+        "connection": {
+          "type": "object",
+          "description": "The Kubernetes cluster connection to use for this step",
+          "x-relay-connectionType": "kubernetes",
+          "properties": {
+            "server": {
+              "type": "string",
+              "description": "The cluster URL to connect to"
+            },
+            "certificateAuthority": {
+              "type": "string",
+              "description": "The PEM-encoded CA certificate of the cluster"
+            },
+            "token": {
+              "type": "string",
+              "description": "An access token to use for authenticating to the cluster"
+            }
+          },
+          "required": ["server","certificateAuthority","token"]
         }
       },
-      "required": ["server","certificateAuthority","token"]
+      "required": ["name", "connection"]
     },
     "git": {
       "type": "object",
