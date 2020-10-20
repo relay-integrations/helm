@@ -7,7 +7,7 @@ Integration with Helm for Puppet Relay.
 The following steps are included in this integration:
 
 | Name | Description |
-|------|-------------|-----|
+|------|-------------|
 | [helm-step-deploy](/steps/deploy) | Deploy Helm chart |
 
 ## Contributing
