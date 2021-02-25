@@ -1,0 +1,29 @@
+apiVersion: integration/v1
+kind: Step
+name: list
+version: 1
+summary: List Helm releases
+description: |
+  This step lists Helm releases in a Kubernetes cluster.
+icon:
+build:
+  apiVersion: build/v1
+  kind: Docker
+publish:
+  repository: relaysh/helm-step-list
+examples:
+- summary: List all Helm releases
+  content:
+    apiVersion: v1
+    kind: Step
+    name: helm-step-list
+    image: relaysh/helm-step-list
+    spec:
+      cluster:
+        name: my-cluster
+        connection: !Connection {type: kubernetes, name: my-k8s-cluster}
+      namespace: !Parameter releaseNamespace
+schemas:
+  spec:
+    source: file
+    file: spec.schema.json

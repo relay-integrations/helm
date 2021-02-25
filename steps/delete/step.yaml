@@ -1,0 +1,29 @@
+apiVersion: integration/v1
+kind: Step
+name: delete
+version: 1
+summary: Delete a Helm release
+description: This step deletes a Helm release from a Kubernetes cluster.
+icon:
+build:
+  apiVersion: build/v1
+  kind: Docker
+publish:
+  repository: relaysh/helm-step-delete
+examples:
+- summary: Delete a Helm release
+  content:
+    apiVersion: v1
+    kind: Step
+    name: helm-step-delete
+    image: relaysh/helm-step-delete
+    spec:
+      cluster:
+        name: my-cluster
+        connection: !Connection {type: kubernetes, name: my-k8s-cluster}
+      name: !Parameter releaseName
+      purge: true
+schemas:
+  spec:
+    source: file
+    file: spec.schema.json

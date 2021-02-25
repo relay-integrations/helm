@@ -1,6 +1,6 @@
-# helm-step-deploy
+# helm-step-list
 
-The Helm deploy step container deploys a Helm chart to a Kubernetes cluster.
+The Helm list step container lists Helm releases in a Kubernetes cluster.
 
 ## Specification
 

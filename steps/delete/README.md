@@ -1,6 +1,6 @@
-# helm-step-deploy
+# helm-step-delete
 
-The Helm deploy step container deploys a Helm chart to a Kubernetes cluster.
+The Helm delete step container deletes a Helm release in a Kubernetes cluster.
 
 ## Specification
 

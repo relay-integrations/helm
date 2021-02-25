@@ -27,7 +27,6 @@ examples:
       chart: puppetboard
       values:
         puppetDbHost: !Parameter puppetDBHost
-
 schemas:
   spec:
     source: file

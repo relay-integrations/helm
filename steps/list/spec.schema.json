@@ -2,32 +2,10 @@
   "$schema": "http://json-schema.org/draft-07/schema",
   "type": "object",
   "properties": {
-    "name": {
-      "type": "string",
-      "description": "The name of the deployment"
-    },
-    "values": {
-      "type": "object",
-      "description": "Use the `values` mapping to override specific values in the chart. For example, the example below overrides some of the chart's API values."
-    },
-    "repository": {
-      "type": "string",
-      "description": "The URL to the chart repository to use if not using Git or the legacy Helm chart repository.",
-      "format": "url"
-    },
-    "chart": {
-      "type": "string",
-      "description": "The chart to use. If the `git` map is set, then the chart is referenced from that repository instead of a remote chart repo."
-    },
     "namespace": {
       "type": "string",
       "description": "The Kubernetes namespace to deploy the chart into.",
       "default": "default"
-    },
-    "recreatePods": {
-      "type": "boolean",
-      "description": "If `true`, all pods managed by this chart will be destroyed and recreated after the deployment completes.",
-      "default": false
     },
     "cluster": {
       "type": "object",
@@ -67,44 +45,6 @@
         "connection"
       ]
     },
-    "git": {
-      "type": "object",
-      "description": "A git repository containing the terraform code to run",
-      "properties": {
-        "connection": {
-          "type": "object",
-          "x-relay-connectionType": "ssh",
-          "description": "A Relay SSH connection to use",
-          "properties": {
-            "sshKey": {
-              "type": "string",
-              "description": "The SSH key to use when cloning the git repository."
-            },
-            "knownHosts": {
-              "type": "string",
-              "description": "SSH known hosts file."
-            }
-          }
-        },
-        "name": {
-          "type": "string",
-          "description": "A directory name for the git clone."
-        },
-        "branch": {
-          "type": "string",
-          "description": "The Git branch to clone.",
-          "default": "master"
-        },
-        "repository": {
-          "type": "string",
-          "description": "The git repository URL."
-        }
-      },
-      "required": [
-        "name",
-        "repository"
-      ]
-    },
     "credentials": {
       "type": "object",
       "description": "A map of cert credentials to use for accessing the tiller controller in the cluster.",
@@ -130,9 +70,6 @@
     }
   },
   "required": [
-    "name",
-    "values",
-    "chart",
     "cluster"
   ]
 }
