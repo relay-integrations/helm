@@ -4,7 +4,7 @@
   "properties": {
     "namespace": {
       "type": "string",
-      "description": "The Kubernetes namespace to deploy the chart into. (default: 'default')",
+      "description": "The Kubernetes namespace to deploy the chart into.",
       "default": "default"
     },
     "cluster": {
@@ -70,7 +70,6 @@
     }
   },
   "required": [
-    "credentials",
     "cluster"
   ]
 }

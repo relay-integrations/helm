@@ -21,12 +21,12 @@
     },
     "namespace": {
       "type": "string",
-      "description": "The Kubernetes namespace to deploy the chart into. (default: 'default')",
+      "description": "The Kubernetes namespace to deploy the chart into.",
       "default": "default"
     },
     "recreatePods": {
       "type": "boolean",
-      "description": "If `true`, all pods managed by this chart will be destroyed and recreated after the deployment completes. (default: false)",
+      "description": "If `true`, all pods managed by this chart will be destroyed and recreated after the deployment completes.",
       "default": false
     },
     "cluster": {
@@ -130,7 +130,6 @@
     }
   },
   "required": [
-    "credentials",
     "name",
     "values",
     "chart",

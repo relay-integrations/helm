@@ -69,12 +69,11 @@
     },
     "purge": {
       "type": "boolean",
-      "description": "If `true`, all release information will be purged. (default: false)",
+      "description": "If `true`, all release information will be purged.",
       "default": false
     }
   },
   "required": [
-    "credentials",
     "name",
     "cluster"
   ]
