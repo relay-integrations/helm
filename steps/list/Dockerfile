@@ -11,10 +11,10 @@ RUN set -eux ; \
     rm -fr /tmp/ni
 RUN apk --no-cache add bash ca-certificates curl git jq openssh && update-ca-certificates
 RUN ["/bin/bash", "-c", "set -eux\nmkdir -p /tmp/helm \u0026\u0026 \\\n  cd /tmp/helm \u0026\u0026 \\\n  curl -L -o helm.tar.gz https://get.helm.sh/helm-v2.15.1-linux-amd64.tar.gz \u0026\u0026 \\\n  echo \"$( curl -sL https://get.helm.sh/helm-v2.15.1-linux-amd64.tar.gz.sha256 )  helm.tar.gz\" | sha256sum -c - \u0026\u0026 \\\n  tar -xvzf helm.tar.gz \u0026\u0026 \\\n  mv linux-amd64/helm /usr/local/bin/helm \u0026\u0026 \\\n  cd - \u0026\u0026 \\\n  rm -fr /tmp/helm\n"]
-COPY "./step.sh" "/nebula/helm-step-deploy.sh"
+COPY "./step.sh" "/nebula/helm-step-list.sh"
 ENTRYPOINT []
-CMD ["/bin/bash", "/nebula/helm-step-deploy.sh"]
+CMD ["/bin/bash", "/nebula/helm-step-list.sh"]
 
-LABEL "org.opencontainers.image.title"="Deploy a Helm chart"
-LABEL "org.opencontainers.image.description"="The Helm deploy step deploys a Helm chart to a Kubernetes cluster."
+LABEL "org.opencontainers.image.title"="List Helm releases"
+LABEL "org.opencontainers.image.description"="The Helm list step lists Helm releases in a Kubernetes cluster."
 LABEL "com.puppet.nebula.sdk.version"="v1"

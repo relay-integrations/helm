@@ -8,7 +8,9 @@ The following steps are included in this integration:
 
 | Name | Description |
 |------|-------------|
+| [helm-step-delete](/steps/delete) | Delete Helm release |
 | [helm-step-deploy](/steps/deploy) | Deploy Helm chart |
+| [helm-step-list](/steps/list) | List Helm releases |
 
 ## Contributing
 

@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the Helm release"
+    },
+    "cluster": {
+      "type": "object",
+      "description": "Information about the Kubernetes cluster to deploy to",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "An alias to use for the cluster within this step"
+        },
+        "connection": {
+          "type": "object",
+          "description": "The Kubernetes cluster connection to use for this step",
+          "x-relay-connectionType": "kubernetes",
+          "properties": {
+            "server": {
+              "type": "string",
+              "description": "The cluster URL to connect to"
+            },
+            "certificateAuthority": {
+              "type": "string",
+              "description": "The PEM-encoded CA certificate of the cluster"
+            },
+            "token": {
+              "type": "string",
+              "description": "An access token to use for authenticating to the cluster"
+            }
+          },
+          "required": [
+            "server",
+            "certificateAuthority",
+            "token"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "connection"
+      ]
+    },
+    "credentials": {
+      "type": "object",
+      "description": "A map of cert credentials to use for accessing the tiller controller in the cluster.",
+      "properties": {
+        "ca.pem": {
+          "type": "string",
+          "description": "The Tiller CA file contents"
+        },
+        "key.pem": {
+          "type": "string",
+          "description": "The tiller key file contents"
+        },
+        "cert.pem": {
+          "type": "string",
+          "description": "The tiller cert file contents"
+        }
+      },
+      "required": [
+        "ca.pem",
+        "key.pem",
+        "cert.pem"
+      ]
+    },
+    "purge": {
+      "type": "boolean",
+      "description": "If `true`, all release information will be purged. (default: false)",
+      "default": false
+    }
+  },
+  "required": [
+    "credentials",
+    "name",
+    "cluster"
+  ]
+}
