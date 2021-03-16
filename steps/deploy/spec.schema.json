@@ -69,7 +69,7 @@
     },
     "git": {
       "type": "object",
-      "description": "A git repository containing the terraform code to run",
+      "description": "A git repository containing helm charts",
       "properties": {
         "connection": {
           "type": "object",
