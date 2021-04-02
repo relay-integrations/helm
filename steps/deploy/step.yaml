@@ -3,7 +3,7 @@ kind: Step
 name: deploy
 version: 4
 summary: Deploy a Helm chart
-description: This step deploys a Helm chart to a Kubernetes cluster.
+description: Deploys a Helm chart to a Kubernetes cluster.
 icon:
 build:
   apiVersion: build/v1
