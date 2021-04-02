@@ -3,8 +3,7 @@ kind: Step
 name: list
 version: 1
 summary: List Helm releases
-description: |
-  This step lists Helm releases in a Kubernetes cluster.
+description: Lists Helm releases in a Kubernetes cluster.
 icon:
 build:
   apiVersion: build/v1

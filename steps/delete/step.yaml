@@ -3,7 +3,7 @@ kind: Step
 name: delete
 version: 1
 summary: Delete a Helm release
-description: This step deletes a Helm release from a Kubernetes cluster.
+description: Deletes a Helm release from a Kubernetes cluster.
 icon:
 build:
   apiVersion: build/v1
